@@ -82,6 +82,14 @@ async def replace_reddit(interaction: discord.Interaction, url: str):
         )
         logger.warning(f"Intento de reemplazo fallido para URL no válida: {url}")
 
+@bot.event
+async def on_message(message: discord.Message):
+    # Verifica si el mensaje menciona al bot
+    if bot.user in message.mentions:
+        await message.channel.send(f"Warap")
+    # Asegúrate de procesar otros comandos
+    await bot.process_commands(message)
+
 
 # Cargar el token y ejecutar el bot
 token = os.getenv("DISCORD_BOT_TOKEN")
